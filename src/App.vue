@@ -14,7 +14,42 @@
         <button type="submit">Add Contact</button>
       </form>
     </section>
+
+    <section id="contact-list">
+      <h2>Contact List</h2>
+       <ul id="contactList">
+         <li v-for="(contact, index) in contacts" :key="index">
+          {{ contact.name }}: {{ contact.phone }}
+         </li>
+
+       </ul>
+    </section>
   </div>
 </template>
+
+<script>
+ import "./style.css";;
+export default {
+  data() {
+    return {
+      newContactName: '',
+      newContactPhone: '',
+      contacts: []
+    };
+  },
+  methods: {
+    addContact() {
+      if (this.newContactName && this.newContactPhone) {
+        this.contacts.push({
+          name: this.newContactName,
+          phone: this.newContactPhone
+        });
+        this.newContactName = '';
+        this.newContactPhone = '';
+      }
+    }
+  }
+};
+</script>
 
 
